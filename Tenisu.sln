@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenisu.API", "Tenisu.API\Tenisu.API.csproj", "{C30A7949-0296-41EA-A922-91D0E8FB9EA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenisu.Domain", "Tenisu.Domain\Tenisu.Domain.csproj", "{7E3E0E16-62D2-4346-A1B8-0465A9ABD64B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenisu.Infrastructure", "Tenisu.Infrastructure\Tenisu.Infrastructure.csproj", "{7FC60884-EA8B-4E91-8B04-C8634BC82492}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{328B1C2B-E627-4B56-A50B-959AFEDBAA49}"
+	ProjectSection(SolutionItems) = preProject
+		PlayersDB.json = PlayersDB.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C30A7949-0296-41EA-A922-91D0E8FB9EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C30A7949-0296-41EA-A922-91D0E8FB9EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C30A7949-0296-41EA-A922-91D0E8FB9EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C30A7949-0296-41EA-A922-91D0E8FB9EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E3E0E16-62D2-4346-A1B8-0465A9ABD64B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E3E0E16-62D2-4346-A1B8-0465A9ABD64B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E3E0E16-62D2-4346-A1B8-0465A9ABD64B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E3E0E16-62D2-4346-A1B8-0465A9ABD64B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC60884-EA8B-4E91-8B04-C8634BC82492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC60884-EA8B-4E91-8B04-C8634BC82492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC60884-EA8B-4E91-8B04-C8634BC82492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC60884-EA8B-4E91-8B04-C8634BC82492}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AE64541-C96E-42B4-9C06-D6ADA647FE15}
+	EndGlobalSection
+EndGlobal
