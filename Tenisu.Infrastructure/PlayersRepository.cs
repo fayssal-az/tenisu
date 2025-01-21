@@ -11,6 +11,26 @@ namespace Tenisu.Infrastructure
             _connectionString = connectionString;
         }
 
+        public Player GetPlayerById(int playerId)
+        {
+            try
+            {
+                using StreamReader reader = new(_connectionString);
+                var json = reader.ReadToEnd();
+                RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
+
+                Player player = rootObject.Players
+                    .Where(p => p.Id == playerId)
+                    .FirstOrDefault();
+
+                return player;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public IEnumerable<Player> GetPlayers()
         {
             try
@@ -27,7 +47,7 @@ namespace Tenisu.Infrastructure
             {
                 throw new Exception(ex.Message);
             }
-           
+
         }
     }
 }
