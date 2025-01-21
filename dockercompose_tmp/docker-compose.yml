@@ -1,0 +1,41 @@
+# services:
+#   tenisu.api:
+#     image: ${DOCKER_REGISTRY-}tenisuapi
+#     build:
+#       context: .
+#       dockerfile: Tenisu.API/Dockerfile
+
+# services:
+#   tenisu.api:
+#     image: ${DOCKER_REGISTRY-}tenisuapi
+#     build:
+#       context: .
+#       dockerfile: Tenisu.API/Dockerfile
+#     volumes:
+#       - ./PlayersDB.json:/PlayersDB.json
+#     environment:
+#       - ConnectionStrings__PlayersDb=/PlayersDB.json
+
+services:
+  tenisu.api:
+    image: ${DOCKER_REGISTRY-}tenisuapi
+    build:
+      context: .
+      dockerfile: Tenisu.API/Dockerfile
+    volumes:
+      - tenisu-share:/app/data
+    environment:
+      - ConnectionStrings__PlayersDb=/app/data/PlayersDB.json
+
+volumes:
+  tenisu-share:
+    driver: azurefile
+    driver_opts:
+      share_name: tenisu-share
+      storage_account_name: tenisusto
+      storage_account_key: qB60qb84ZO9Cw70AaCf1valfKi3kFkZ7t1WjQ6Tg57S6lB9K0CcYpiiHGy0BRAryVvMrSHr+EURh+AStwRMlNg==
+
+
+
+
+

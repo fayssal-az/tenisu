@@ -12,5 +12,16 @@ namespace Tenisu.Domain
         public Country Country { get; set; }
         public string Picture { get; set; }
         public Data Data { get; set; }
+
+        public int GetRatio()
+        {
+
+            return this.Data.Last.Sum() / this.Data.Last.Count();
+        }
+
+        public int GetBMI()
+        {
+            return Data.Weight / (Data.Height * Data.Height);
+        }
     }
 }
