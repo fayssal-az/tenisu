@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tenisu.Domain;
 using Tenisu.Infrastructure;
+using Tenisu.Usecases;
 
 namespace Tenisu.API.Controllers
 {
@@ -12,10 +13,13 @@ namespace Tenisu.API.Controllers
     {
         private readonly string _pathToFile;
         private readonly IPlayersRepository _playersRepository;
+        private readonly FetchPlayersStatsUC _fetchPlayersStatsUseCase;
+
         public PlayersController(IConfiguration configuration, IPlayersRepository playersRepository)
         {
             _pathToFile = configuration.GetConnectionString("PlayersDb");
             _playersRepository = playersRepository;
+            _fetchPlayersStatsUseCase = new FetchPlayersStatsUC(_playersRepository);
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAllPlayers()
@@ -30,6 +34,13 @@ namespace Tenisu.API.Controllers
         {
             Player player = _playersRepository.GetPlayerById(playerid);
             return Ok(player);
+        }
+
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetStats()
+        {
+            var stats = _fetchPlayersStatsUseCase.Execute();
+            return Ok(stats);
         }
     }
 }

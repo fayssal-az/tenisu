@@ -5,17 +5,19 @@ namespace Tenisu.Infrastructure
 {
     public class PlayersRepository : IPlayersRepository
     {
-        private readonly string _connectionString;
+        private readonly string _pathToFile;
         public PlayersRepository(string connectionString)
         {
-            _connectionString = connectionString;
+            _pathToFile = connectionString;
         }
 
         public Player GetPlayerById(int playerId)
         {
+            PlayersStorage.GetFile();
+
             try
             {
-                using StreamReader reader = new(_connectionString);
+                using StreamReader reader = new(_pathToFile);
                 var json = reader.ReadToEnd();
                 RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
 
@@ -33,9 +35,11 @@ namespace Tenisu.Infrastructure
 
         public IEnumerable<Player> GetPlayers()
         {
+            PlayersStorage.GetFile();
+
             try
             {
-                using StreamReader reader = new(_connectionString);
+                using StreamReader reader = new(_pathToFile);
                 var json = reader.ReadToEnd();
                 RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
 
