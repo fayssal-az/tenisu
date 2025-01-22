@@ -17,30 +17,41 @@ namespace Tenisu.Domain
 
         public Country ComputeGreatestCountryRatio()
         {
-            var maxRatio = ListOfPlayers.Max(p => p.GetRatio());
-            return ListOfPlayers.FirstOrDefault(p => p.GetRatio() == maxRatio).Country;
+            var maxRatio = ListOfPlayers.Max(p => p.ComputeRatio());
+            return ListOfPlayers.FirstOrDefault(p => p.ComputeRatio() == maxRatio).Country;
         }
 
-        public int ComputeMeanBMI()
+        public double ComputeMeanBMI()
         {
-            return ListOfPlayers.Sum(p => p.GetBMI()) / ListOfPlayers.Count();
+            return ListOfPlayers.Count == 0 ? 0 : ListOfPlayers.Sum(p => p.ComputeBMI()) / ListOfPlayers.Count();
         }
-
 
         public int ComputeMedianHeight()
         {
-            var orderedList = ListOfPlayers.OrderBy(p => p.Data.Height).ToList();
-
-            if (ListOfPlayers.Count() % 2 == 0)
+            if (ListOfPlayers.Count == 0)
             {
-                var index = ListOfPlayers.Count() / 2;
-                var index2 = ListOfPlayers.Count() / 2 + 1;                
-                return (orderedList[index].Data.Height + orderedList[index2].Data.Height) / 2;
-
+            throw new Exception("The list of players is empty");
             }
 
-            int medianIndex = (orderedList.Count + 1) / 2;
-            return (orderedList[medianIndex]).Data.Height;
+            var orderedList = ListOfPlayers.OrderBy(p => p.Data.Height).ToList();
+            int count = orderedList.Count;
+
+            if (count == 2)
+            {
+                return (orderedList[0].Data.Height + orderedList[1].Data.Height) / 2;
+            }
+            else if (count % 2 == 0)
+            {
+                int midIndex1 = count / 2 - 1;
+                int midIndex2 = count / 2;
+                return (orderedList[midIndex1].Data.Height + orderedList[midIndex2].Data.Height) / 2;
+            }
+            else
+            {
+                int midIndex = count / 2;
+                return orderedList[midIndex].Data.Height;
+            }
         }
+        
     }
 }

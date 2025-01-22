@@ -7,6 +7,6 @@
         public int Weight { get; set; }
         public int Height { get; set; }
         public int Age { get; set; }
-        public List<int> Last { get; set; }
+        public List<double> Last { get; set; }
     }
 }

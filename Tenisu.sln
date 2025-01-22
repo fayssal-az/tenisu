@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		PlayersDB.json = PlayersDB.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenisu.Usecases", "Tenisu.Usecases\Tenisu.Usecases.csproj", "{A9B87313-F025-4380-A5B8-A97476F4FF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tenisu.Usecases", "Tenisu.Usecases\Tenisu.Usecases.csproj", "{A9B87313-F025-4380-A5B8-A97476F4FF86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenisu.Tests", "Tenisu.Tests\Tenisu.Tests.csproj", "{ED9B3010-DB38-499A-BDCB-B60F4A5FC5CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{A9B87313-F025-4380-A5B8-A97476F4FF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9B87313-F025-4380-A5B8-A97476F4FF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9B87313-F025-4380-A5B8-A97476F4FF86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9B3010-DB38-499A-BDCB-B60F4A5FC5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9B3010-DB38-499A-BDCB-B60F4A5FC5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9B3010-DB38-499A-BDCB-B60F4A5FC5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9B3010-DB38-499A-BDCB-B60F4A5FC5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

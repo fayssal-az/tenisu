@@ -13,15 +13,23 @@ namespace Tenisu.Domain
         public string Picture { get; set; }
         public Data Data { get; set; }
 
-        public int GetRatio()
+        public virtual double ComputeRatio()
         {
+            if (this.Data.Last.Count > 0)
+            {              
+                return this.Data.Last.Sum() / this.Data.Last.Count();
+            }
+                  
 
-            return this.Data.Last.Sum() / this.Data.Last.Count();
+            throw new Exception("There is no available data");
         }
 
-        public int GetBMI()
+        public double ComputeBMI()
         {
-            return Data.Weight / (Data.Height * Data.Height);
+            if (this.Data.Height > 0)
+                return Data.Weight / (Data.Height * Data.Height);
+
+            throw new Exception("There is no available data");
         }
     }
 }
