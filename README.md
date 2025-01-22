@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a tennis application that includes multiple components such as an API, a console application, and a database. The project is structured into several directories, each serving a specific purpose.
+This project is a tennis API. The project is structured into several directories, each serving a specific purpose.
 
 ## Prerequisites
 
@@ -18,24 +18,23 @@ This project is a tennis application that includes multiple components such as a
     cd Tenisu.API
     ```
 
-2. Restore the dependencies:
+2. Update the `appsettings.Development.json` file with the correct connection string to your local database.
+
+3. Restore the dependencies:
     ```sh
     dotnet restore
     ```
 
-3. Run the API:
+4. Run the API:
     ```sh
     dotnet run
     ```
 
 
-### Database
-
-1. Ensure that the [PlayersDB.json](http://_vscodecontentref_/2) file is located in the [Data](http://_vscodecontentref_/3) directory.
 
 ## Running Tests
 
-1. Navigate to the [Tenisu.Tests](http://_vscodecontentref_/4) directory:
+1. Navigate to the [Tenisu.Tests](https://github.com/fayssal-az/tenisu/tree/dev/Tenisu.Tests) directory:
     ```sh
     cd Tenisu.Tests
     ```
@@ -50,13 +49,13 @@ This project is a tennis application that includes multiple components such as a
     dotnet test
     ```
 
-## Deployment
+## Deploy locally
 
 ### Docker
 
 1. Ensure Docker is installed and running on your machine.
 
-2. Navigate to the root directory of the project where the [docker-compose.yml](http://_vscodecontentref_/5) file is located.
+2. Navigate to the root directory of the project where the [docker-compose.yml](https://github.com/fayssal-az/tenisu/blob/dev/docker-compose.yml) file is located.
 
 3. Build and start the Docker containers:
     ```sh
@@ -67,20 +66,18 @@ This project is a tennis application that includes multiple components such as a
 
 5. The API documentation is accessible at `https://localhost:5001/swagger/index.html`
 
-### Azure Blob Storage
-
-1. Update the connection string for Azure Blob Storage in the `appsettings.json` file located in the [Tenisu.API](http://_vscodecontentref_/6) directory:
-    ```json
-    {
-      "ConnectionStrings": {
-        "BlobStorage": "<Your Azure Blob Storage Connection String>"
-      }
-    }
-    ```
-
-2. Deploy the application to your preferred cloud service (e.g., Azure, AWS, GCP).
 
 ## Additional Information
+
+## Enhancements
+
+Enhancements to consider:
+
+1. Public properties in the entities like Player should be made public with private set.
+
+2. The `ComputeRatio()` method is virtual to allow mocking in tests, but ideally, it might have been better to create a `IPlayer` interface.
+
+3. Use a key vault to store the database connection information or a managed identity
 
 
 

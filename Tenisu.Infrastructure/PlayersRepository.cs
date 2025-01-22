@@ -106,9 +106,9 @@ namespace Tenisu.Infrastructure
 
 
 
-        private async Task<List<int>> GetPlayerLastResultsAsync(int playerId)
+        private async Task<List<double>> GetPlayerLastResultsAsync(int playerId)
         {
-            var results = new List<int>();
+            var results = new List<double>();
 
             using (var connection = new MySqlConnection(_connectionString))
             {

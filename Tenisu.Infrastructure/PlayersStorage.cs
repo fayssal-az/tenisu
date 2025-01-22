@@ -12,7 +12,7 @@ namespace Tenisu.Infrastructure
        
         public static async Task GetFile()
         {
-            string _connectionString = "DefaultEndpointsProtocol=https;AccountName=tenisusto;AccountKey=qB60qb84ZO9Cw70AaCf1valfKi3kFkZ7t1WjQ6Tg57S6lB9K0CcYpiiHGy0BRAryVvMrSHr+EURh+AStwRMlNg==;EndpointSuffix=core.windows.net";
+            string _connectionString = "{connectionstring}";
             string _blobName = "PlayersDB.json";
             string _containername = "tenisucontainer";
             string _downloadFilePath = "Data/PlayersDB.json";
