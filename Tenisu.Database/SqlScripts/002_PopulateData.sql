@@ -1,0 +1,33 @@
+INSERT INTO players (id, firstname, lastname, shortname, sex, country_code, country_picture, picture, `rank`, points, weight, height, age) VALUES
+(52, 'Novak', 'Djokovic', 'N.DJO', 'M', 'SRB', 'https://tenisu.latelier.co/resources/Serbie.png', 'https://tenisu.latelier.co/resources/Djokovic.png', 2, 2542, 80000, 188, 31),
+(95, 'Venus', 'Williams', 'V.WIL', 'F', 'USA', 'https://tenisu.latelier.co/resources/USA.png', 'https://tenisu.latelier.co/resources/Venus.webp', 52, 1105, 74000, 185, 38),
+(65, 'Stan', 'Wawrinka', 'S.WAW', 'M', 'SUI', 'https://tenisu.latelier.co/resources/Suisse.png', 'https://tenisu.latelier.co/resources/Wawrinka.png', 21, 1784, 81000, 183, 33),
+(102, 'Serena', 'Williams', 'S.WIL', 'F', 'USA', 'https://tenisu.latelier.co/resources/USA.png', 'https://tenisu.latelier.co/resources/Serena.png', 10, 3521, 72000, 175, 37),
+(17, 'Rafael', 'Nadal', 'R.NAD', 'M', 'ESP', 'https://tenisu.latelier.co/resources/Espagne.png', 'https://tenisu.latelier.co/resources/Nadal.png', 1, 1982, 85000, 185, 33);
+
+INSERT INTO player_last_results (player_id, result_index, result) VALUES
+(52, 0, 1),
+(52, 1, 1),
+(52, 2, 1),
+(52, 3, 1),
+(52, 4, 1),
+(95, 0, 0),
+(95, 1, 1),
+(95, 2, 0),
+(95, 3, 0),
+(95, 4, 1),
+(65, 0, 1),
+(65, 1, 1),
+(65, 2, 1),
+(65, 3, 0),
+(65, 4, 1),
+(102, 0, 0),
+(102, 1, 1),
+(102, 2, 1),
+(102, 3, 1),
+(102, 4, 0),
+(17, 0, 1),
+(17, 1, 0),
+(17, 2, 0),
+(17, 3, 0),
+(17, 4, 1);

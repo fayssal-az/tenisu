@@ -1,0 +1,36 @@
+services:
+  tenisu:
+    image: ${DOCKER_REGISTRY-}tenisu
+    container_name: tenisu-api
+    build:
+      context: .
+      dockerfile: Tenisu.API/Dockerfile
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+
+  tenisu.databasae:
+    image: mysql:8.0
+    container_name: tenisu.database
+    hostname: tenisudb
+    environment:
+      - MYSQL_DATABASE=tenisu
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - tenisu-db:/var/lib/mysql
+    ports:
+      - 8000:3306
+
+  db-migrations:
+    build:
+      context: Tenisu.Database/
+      dockerfile: ./Dockerfile
+    depends_on:
+      - tenisu.databasae
+    environment:
+      DB_CONNECTION: "Server=tenisudb;User Id=root;Password=password;Database=tenisu;Port=3306;"
+
+    restart: on-failure
+
+volumes:
+  tenisu-db:

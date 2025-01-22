@@ -9,6 +9,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 //var tmp = builder.Configuration.GetSection("PathToJsonFile").Value;
 //builder.Services.AddScoped<IPlayersRepository>(sp => new PlayersRepository(tmp));
 builder.Services.AddScoped<IPlayersRepository>(sp => new PlayersRepository(builder.Configuration.GetConnectionString("PlayersDb")));
@@ -25,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+
 
 app.UseAuthorization();
 

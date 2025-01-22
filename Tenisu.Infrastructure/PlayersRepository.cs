@@ -22,8 +22,8 @@ namespace Tenisu.Infrastructure
                 RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
 
                 Player player = rootObject.Players
-                    .Where(p => p.Id == playerId)
-                    .FirstOrDefault();
+                                    .Where(p => p.Id == playerId)
+                                    .FirstOrDefault();
 
                 return player;
             }
