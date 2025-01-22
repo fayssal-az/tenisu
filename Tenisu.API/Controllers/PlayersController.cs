@@ -40,7 +40,7 @@ namespace Tenisu.API.Controllers
         public async Task<IActionResult> GetStats()
         {
             var stats = _fetchPlayersStatsUseCase.Execute();
-            return Ok(stats);
+            return Ok(stats.Result);
         }
     }
 }

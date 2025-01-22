@@ -19,7 +19,7 @@ namespace Tenisu.Infrastructure
         public async Task<IEnumerable<Player>> GetPlayersAsync()
         {
             var players = new List<Player>();
-
+        
             using (var connection = new MySqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
@@ -49,7 +49,7 @@ namespace Tenisu.Infrastructure
                                 Weight = reader.GetInt32(reader.GetOrdinal("weight")),
                                 Height = reader.GetInt32(reader.GetOrdinal("height")),
                                 Age = reader.GetInt32(reader.GetOrdinal("age")),
-                                Last = new List<int>() // Assuming you have a way to populate this list
+                                Last = await GetPlayerLastResultsAsync(reader.GetInt32(reader.GetOrdinal("id")))
                             }
                         });
                     }
@@ -94,7 +94,7 @@ namespace Tenisu.Infrastructure
                                 Weight = reader.GetInt32(reader.GetOrdinal("weight")),
                                 Height = reader.GetInt32(reader.GetOrdinal("height")),
                                 Age = reader.GetInt32(reader.GetOrdinal("age")),
-                                Last = new List<int>() // Assuming you have a way to populate this list
+                                Last = await GetPlayerLastResultsAsync(reader.GetInt32(reader.GetOrdinal("id")))
                             }
                         };
                     }
@@ -106,6 +106,30 @@ namespace Tenisu.Infrastructure
 
 
 
+        private async Task<List<int>> GetPlayerLastResultsAsync(int playerId)
+        {
+            var results = new List<int>();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                using (var command = new MySqlCommand("SELECT result FROM player_last_results WHERE player_id = @playerId ORDER BY result_index", connection))
+                {
+                    command.Parameters.AddWithValue("@playerId", playerId);
+
+                    using (var resultReader = await command.ExecuteReaderAsync())
+                    {
+                        while (await resultReader.ReadAsync())
+                        {
+                            results.Add(resultReader.GetInt32(resultReader.GetOrdinal("result")));
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
 
     }
 }
