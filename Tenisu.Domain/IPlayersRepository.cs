@@ -2,6 +2,6 @@
 
 public interface IPlayersRepository
 {
-    Player GetPlayerById(int playerid);
-    public IEnumerable<Player> GetPlayers();
+    Task<Player> GetPlayerByIdAsync(int playerid);
+    Task <IEnumerable<Player>> GetPlayersAsync();
 }

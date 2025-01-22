@@ -1,62 +1,111 @@
-﻿using Newtonsoft.Json;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Tenisu.Domain;
 using Tenisu.Domain;
 
 namespace Tenisu.Infrastructure
 {
     public class PlayersRepository : IPlayersRepository
     {
-        private readonly string _pathToFile;
+        private readonly string _connectionString;
+
         public PlayersRepository(string connectionString)
         {
-            _pathToFile = connectionString;
+            _connectionString = connectionString;
         }
 
-        public Player GetPlayerById(int playerId)
+        public async Task<IEnumerable<Player>> GetPlayersAsync()
         {
-            PlayersStorage.GetFile();
+            var players = new List<Player>();
 
-            try
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                using StreamReader reader = new(_pathToFile);
-                var json = reader.ReadToEnd();
-                RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
+                await connection.OpenAsync();
 
-                Player player = rootObject.Players
-                                    .Where(p => p.Id == playerId)
-                                    .FirstOrDefault();
+                var command = new MySqlCommand("SELECT * FROM players", connection);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        players.Add(new Player
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("id")),
+                            Firstname = reader.GetString(reader.GetOrdinal("firstname")),
+                            Lastname = reader.GetString(reader.GetOrdinal("lastname")),
+                            Shortname = reader.GetString(reader.GetOrdinal("shortname")),
+                            Sex = reader.GetString(reader.GetOrdinal("sex")),
+                            Country = new Country
+                            {
+                                Code = reader.GetString(reader.GetOrdinal("country_code")),
+                                Picture = reader.GetString(reader.GetOrdinal("country_picture"))
+                            },
+                            Picture = reader.GetString(reader.GetOrdinal("picture")),
+                            Data = new Data
+                            {
+                                Rank = reader.GetInt32(reader.GetOrdinal("rank")),
+                                Points = reader.GetInt32(reader.GetOrdinal("points")),
+                                Weight = reader.GetInt32(reader.GetOrdinal("weight")),
+                                Height = reader.GetInt32(reader.GetOrdinal("height")),
+                                Age = reader.GetInt32(reader.GetOrdinal("age")),
+                                Last = new List<int>() // Assuming you have a way to populate this list
+                            }
+                        });
+                    }
+                }
+            }
 
-                return player;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return players;
         }
 
-        public IEnumerable<Player> GetPlayers()
+        public async Task<Player> GetPlayerByIdAsync(int playerid)
         {
-            PlayersStorage.GetFile();
+            Player player = null;
 
-            try
+            using (var connection = new MySqlConnection(_connectionString))
             {
-                using StreamReader reader = new(_pathToFile);
-                var json = reader.ReadToEnd();
-                RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
+                await connection.OpenAsync();
 
-                List<Player> players = rootObject.Players;
+                var command = new MySqlCommand("SELECT * FROM players WHERE Id = @Id", connection);
+                command.Parameters.AddWithValue("@Id", playerid);
 
-                return players;
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        player = new Player
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("id")),
+                            Firstname = reader.GetString(reader.GetOrdinal("firstname")),
+                            Lastname = reader.GetString(reader.GetOrdinal("lastname")),
+                            Shortname = reader.GetString(reader.GetOrdinal("shortname")),
+                            Sex = reader.GetString(reader.GetOrdinal("sex")),
+                            Country = new Country
+                            {
+                                Code = reader.GetString(reader.GetOrdinal("country_code")),
+                                Picture = reader.GetString(reader.GetOrdinal("country_picture"))
+                            },
+                            Picture = reader.GetString(reader.GetOrdinal("picture")),
+                            Data = new Data
+                            {
+                                Rank = reader.GetInt32(reader.GetOrdinal("rank")),
+                                Points = reader.GetInt32(reader.GetOrdinal("points")),
+                                Weight = reader.GetInt32(reader.GetOrdinal("weight")),
+                                Height = reader.GetInt32(reader.GetOrdinal("height")),
+                                Age = reader.GetInt32(reader.GetOrdinal("age")),
+                                Last = new List<int>() // Assuming you have a way to populate this list
+                            }
+                        };
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
 
+            return player;
         }
+
+
+
+
     }
-}
-
-public class RootObject
-{
-    public List<Player> Players { get; set; }
 }

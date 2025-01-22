@@ -19,9 +19,9 @@ namespace Tenisu.Usecases
             _playersRepository = playersRepository;
         }
 
-        public Stats Execute()
+        public async Task<Stats> Execute()
         {
-            IEnumerable<Player> playersDto = _playersRepository.GetPlayers();
+            IEnumerable<Player> playersDto = await _playersRepository.GetPlayersAsync();
             Players players = new Players() ;
             players.ListOfPlayers = (List<Player>)playersDto;
 

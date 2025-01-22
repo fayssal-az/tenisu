@@ -24,7 +24,7 @@ namespace Tenisu.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllPlayers()
         {
-            IEnumerable<Player> players = _playersRepository.GetPlayers();
+            IEnumerable<Player> players = await _playersRepository.GetPlayersAsync();
             var orderedPlayers = players.OrderBy(x => x.Data.Rank);
             return Ok(orderedPlayers);
         }
@@ -32,7 +32,7 @@ namespace Tenisu.API.Controllers
         [HttpGet("{playerid}")]
         public async Task<IActionResult> GetPlayerById([FromRoute]int playerid)
         {
-            Player player = _playersRepository.GetPlayerById(playerid);
+            Player player = await _playersRepository.GetPlayerByIdAsync(playerid);
             return Ok(player);
         }
 
