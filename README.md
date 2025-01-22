@@ -79,6 +79,8 @@ Enhancements to consider:
 
 3. Use a key vault to store the database connection information or a managed identity
 
+4. It is also preferable to use DTOs when retrieving data from the database.
+
 
 
 
