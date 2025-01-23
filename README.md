@@ -81,7 +81,7 @@ Enhancements to consider:
 
 4. It is also preferable to use DTOs when retrieving data from the database.
 
-
+5. The deployment is not included in this part. Nevertheless, we can use Azure Container Instances to deploy the dockerized app into the cloud
 
 
 
