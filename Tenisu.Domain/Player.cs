@@ -27,7 +27,7 @@ namespace Tenisu.Domain
         public double ComputeBMI()
         {
             if (this.Data.Height > 0)
-                return Data.Weight / (Data.Height * Data.Height);
+                return ( Data.Weight / 1000) / ( (Data.Height / 100) * (Data.Height / 100) );
 
             throw new Exception("There is no available data");
         }

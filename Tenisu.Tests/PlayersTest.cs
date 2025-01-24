@@ -95,7 +95,7 @@ namespace Tenisu.Tests
                 };
 
             // Act
-            int medianHeight = players.ComputeMedianHeight();
+            double medianHeight = players.ComputeMedianHeight();
 
             // Assert
             Assert.Equal(185, medianHeight);
@@ -115,7 +115,7 @@ namespace Tenisu.Tests
                 };
 
             // Act
-            int medianHeight = players.ComputeMedianHeight();
+            double medianHeight = players.ComputeMedianHeight();
 
             // Assert
             Assert.Equal(180, medianHeight);

@@ -6,6 +6,6 @@ namespace Tenisu.Usecases
     {
         public string GreatestCountry { get; internal set; }
         public double MeanBMI { get; internal set; }
-        public int MedianHeight { get; internal set; }
+        public double MedianHeight { get; internal set; }
     }
 }

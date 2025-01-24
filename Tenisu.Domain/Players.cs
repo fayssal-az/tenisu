@@ -26,7 +26,7 @@ namespace Tenisu.Domain
             return ListOfPlayers.Count == 0 ? 0 : ListOfPlayers.Sum(p => p.ComputeBMI()) / ListOfPlayers.Count();
         }
 
-        public int ComputeMedianHeight()
+        public double ComputeMedianHeight()
         {
             if (ListOfPlayers.Count == 0)
             {
